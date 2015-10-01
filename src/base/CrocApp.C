@@ -1,10 +1,10 @@
-#include "StorkApp.h"
+#include "CrocApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
 #include "ModulesApp.h"
 
 template<>
-InputParameters validParams<StorkApp>()
+InputParameters validParams<CrocApp>()
 {
   InputParameters params = validParams<MooseApp>();
 
@@ -15,40 +15,40 @@ InputParameters validParams<StorkApp>()
   return params;
 }
 
-StorkApp::StorkApp(InputParameters parameters) :
+CrocApp::CrocApp(InputParameters parameters) :
     MooseApp(parameters)
 {
   Moose::registerObjects(_factory);
   ModulesApp::registerObjects(_factory);
-  StorkApp::registerObjects(_factory);
+  CrocApp::registerObjects(_factory);
 
   Moose::associateSyntax(_syntax, _action_factory);
   ModulesApp::associateSyntax(_syntax, _action_factory);
-  StorkApp::associateSyntax(_syntax, _action_factory);
+  CrocApp::associateSyntax(_syntax, _action_factory);
 }
 
-StorkApp::~StorkApp()
+CrocApp::~CrocApp()
 {
 }
 
 // External entry point for dynamic application loading
-extern "C" void StorkApp__registerApps() { StorkApp::registerApps(); }
+extern "C" void CrocApp__registerApps() { CrocApp::registerApps(); }
 void
-StorkApp::registerApps()
+CrocApp::registerApps()
 {
-  registerApp(StorkApp);
+  registerApp(CrocApp);
 }
 
 // External entry point for dynamic object registration
-extern "C" void StorkApp__registerObjects(Factory & factory) { StorkApp::registerObjects(factory); }
+extern "C" void CrocApp__registerObjects(Factory & factory) { CrocApp::registerObjects(factory); }
 void
-StorkApp::registerObjects(Factory & factory)
+CrocApp::registerObjects(Factory & factory)
 {
 }
 
 // External entry point for dynamic syntax association
-extern "C" void StorkApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { StorkApp::associateSyntax(syntax, action_factory); }
+extern "C" void CrocApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { CrocApp::associateSyntax(syntax, action_factory); }
 void
-StorkApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+CrocApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
 }
